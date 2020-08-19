@@ -2,7 +2,7 @@ var MongoClient = require('mongodb').MongoClient;
 let mongodbServer = "application:Chacha123@mongodb://35.231.29.183:27017"
 let databaseName = "careu-db"
 var dbInstance;
-console.log('mongodbServer' , mongodbServer); 
+console.log('mongodbServer>>' , mongodbServer); 
 function connect(){
     return new Promise((resolve,reject)=>{
         MongoClient.connect(mongodbServer+ databaseName,function (err, client){
