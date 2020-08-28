@@ -1,5 +1,5 @@
 var MongoClient = require('mongodb').MongoClient;
-let mongodbServer = "application:Chacha123@mongodb://35.231.29.183:27017"
+let mongodbServer = "mongodb://application:Chacha123@35.231.29.183:27017/"
 let databaseName = "careu-db"
 var dbInstance;
 console.log('mongodbServer>>' , mongodbServer); 
