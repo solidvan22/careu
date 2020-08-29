@@ -22,9 +22,6 @@ async function saveFile(file,path){
 	})
 }
 
-
-
-
 router.get('/', function (req, res, next) {
 	res.send('get all posts');
 });

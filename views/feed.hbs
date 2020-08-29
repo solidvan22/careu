@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="css/feed.css">
 <div class="container">
 	<div class="row">
 
@@ -468,3 +469,57 @@
 
 	</div>
 </div>
+
+
+<div id="modalWindow-container" >
+	<div id="createNewPostWindow">
+		<h2 id="postWindow-title">
+			Create new post
+		</h2>
+		<textarea name="" id="post-textarea" cols="30" rows="10"></textarea>
+		<input type="file" id="input-file" class='inputfile'>
+		<button id="post-button">POST</button>
+	</div>
+</div>
+
+<a id= 'open-post-window' class="create-post-bubble-button" href="#">
+	<img src="svg-icons/back-to-top.svg" alt="arrow" style="margin:auto">
+</a>
+
+<script>
+	uploadButton = document.getElementById('post-button');
+	openPostWindowButton = document.getElementById('open-post-window');
+	modalWindowContainer = document.getElementById('modalWindow-container');
+	openPostWindowButton.onclick = function(){
+		modalWindowContainer.style.display ="flex";
+	}
+	uploadButton.onclick = function () {
+		uploadFunction();
+	}
+
+	function uploadFunction() {
+		let input = document.getElementById('input-file');
+		let formData = new FormData();
+		let textArea = document.getElementById('post-textarea')
+		formData.append("postContent", input.files[0]);
+		formData.append('publisherUser', 'SERCH');
+		formData.append('text', textArea.value);
+		formData.append('section', 'self-care');
+		let url = 'http://35.231.29.183:3000/posts'
+		jQuery.ajax({
+			url: url,
+			data: formData,
+			cache: false,
+			contentType: false,
+			processData: false,
+			method: 'POST',
+			type: 'POST', // For jQuery < 1.9
+			success: function (data) {
+				alert(data);
+			}
+		});
+	}
+
+
+
+</script>
