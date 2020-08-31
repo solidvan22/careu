@@ -179,8 +179,7 @@
 							<img src="img/avatar7-sm.jpg" alt="author">
 
 							<div class="author-date">
-								<a class="h6 post__author-name fn" href="#">Marina Valentine</a> shared a <a
-									href="#">link</a>
+								<a class="h6 post__author-name fn" href="#">Marina Valentine</a> 
 								<div class="post__date">
 									<time class="published" datetime="2004-07-24T18:18">
 										March 4 at 2:05pm
@@ -429,14 +428,7 @@
 
 					</article>
 				</div>
-
-			
-
-			
 			</div>
-
-
-
 		</main>
 
 		<!-- ... end Main Content -->
@@ -477,15 +469,21 @@
 
 		<h2 id="postWindow-title">
 			Create new post
-			<header style="background-color:#000;color:#fff;">
-				<span onclick="document.getElementById('modalWindow-container').style.display='none'"
-					class="close-button topright">&times;</span>
-			</header>
 		</h2>
 		<textarea name="" id="post-textarea" cols="30" rows="10"></textarea>
 		<input type="file" id="input-file" class='inputfile'>
-		<button id="post-button">POST</button>
+		<div style="display: flex; flex-direction:row; height: 100px;">
+			<button class= "modal-action-button"  id="post-button">POST</button>
+			<button class = "modal-action-button" id="cancel-button">CANCEL</button>
+		</div>
+		
 	</div>
+
+	{{!-- <header style="background-color:#000;color:#fff;">
+		<span onclick="document.getElementById('modalWindow-container').style.display='none'"
+			class="close-button topright">&times;</span>
+	</header> --}}
+
 </div>
 
 <a id= 'open-post-window' class="create-post-bubble-button" href="#">
@@ -493,41 +491,10 @@
 </a>
 
 <script>
-	
-	uploadButton = document.getElementById('post-button');
-	openPostWindowButton = document.getElementById('open-post-window');
-	modalWindowContainer = document.getElementById('modalWindow-container');
-	openPostWindowButton.onclick = function(){
-		modalWindowContainer.style.display ="flex";
+	window.session = {
+		userId: '{{{userId}}}',
+		title: '{{{title}}}'
 	}
-	uploadButton.onclick = function () {
-		uploadFunction();
-	}
-
-	function uploadFunction() {
-		let input = document.getElementById('input-file');
-		let formData = new FormData();
-		let textArea = document.getElementById('post-textarea')
-		formData.append("postContent", input.files[0]);
-		formData.append('publisherUser', 'SERCH');
-		formData.append('text', textArea.value);
-		formData.append('section', 'self-care');
-		let url = 'http://35.231.29.183:3000/posts'
-		jQuery.ajax({
-			url: url,
-			data: formData,
-			cache: false,
-			contentType: false,
-			processData: false,
-			method: 'POST',
-			type: 'POST', // For jQuery < 1.9
-			success: function (data) {
-				alert(data);
-			}
-		});
-		
-	}
-
-
-
 </script>
+<script src="js/moment.min.js"></script>
+<script src="js/posts.js"></script>

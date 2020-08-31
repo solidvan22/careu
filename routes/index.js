@@ -9,7 +9,8 @@ router.get('/home', function (req, res, next) {
 });
 
 router.get('/self-care', function (req, res, next) {
-  res.render('feed', { title: 'Self Care' });
+  let userId = '5f4d35fe510a175b5489df1e'
+  res.render('feed', { title: 'Self Care',userId });
 });
 
 router.get('/meditation', function (req, res, next) {
@@ -20,7 +21,7 @@ router.get('/movement', function (req, res, next) {
   res.render('feed', { title: 'Movement' });
 });
 
-router.get('/mainresources', function (req, res, next) {
+router.get('/maineresources', function (req, res, next) {
   res.render('feed', { title: 'Maine Resources' });
 });
 

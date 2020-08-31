@@ -5,21 +5,15 @@ var md5         = require('md5');
 var path	= require('path');
 const currentPath = process.cwd();
 const postsContentPath = path.join(currentPath,'..','posts-content')
+const toolKit = require('../app-common-toolkit');
+
+
 const validExtensionFiles = {
 	'jpg':1,
 	'jpeg':1,
 	'png':1,
 	'mp4':1,
 	'wav':1
-}
-async function saveFile(file,path){
-	return new Promise((resolve,reject)=>{
-		file.mv(path,err =>{
-			console.log('ERROR SAVING FILE>>' , err);
-			if(err) return reject(err);
-			return resolve(true);
-		})
-	})
 }
 
 router.get('/', function (req, res, next) {
@@ -42,7 +36,7 @@ router.post('/', async function (req, res, next) {
 		let fileName = postId + "." + extension;
 		let pathToSave = postsContentPath + '/' + fileName;
 		if(!isValidExtension) return res.status(400).send({error:'Invalid extension file'})
-		successFileSaved = await saveFile(sampleFile,pathToSave);
+		successFileSaved = await toolKit.saveFile(sampleFile,pathToSave);
 		newPost.contentFileName = fileName;
 		let updatePostResult = await postsCollection.save(newPost);
 		return res.send(newPost);
