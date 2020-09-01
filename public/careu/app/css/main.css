@@ -6880,7 +6880,7 @@ ol ol li {
     .news-feed-form .nav-link .olymp-status-icon {
       width: 20px; }
   .news-feed-form textarea {
-    min-height: 160px;
+    min-height: 100px;
     border-radius: 0;
     border-top: none;
     border-left: none;
