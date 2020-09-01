@@ -8,15 +8,18 @@ const currentPath = process.cwd();
 const postsContentPath = path.join(currentPath,'..','posts-content')
 const toolKit = require('../app-common-toolkit');
 const validExtensionFiles = {
-	'jpg':1,
-	'jpeg':1,
-	'png':1,
-	'mp4':1,
-	'wav':1
+	'jpg'	: "image",
+	'jpeg'	: "image",
+	'png'	: "image",
+	'mp4'	: "video"
 }
 
-router.get('/', function (req, res, next) {
-	res.send('get all posts');
+router.get('/', async function (req, res, next) {
+	// get db, collection objecs
+	let db = await mongoDB.getDb();
+	let postsCollection = db.collection('posts');
+	let postsArray = await postsCollection.find({}).sort({dateTime:1}).limit(20).toArray();
+	res.send(postsArray);
 });
 
 router.get('/:postId/content',async function (req,res) {
@@ -48,6 +51,11 @@ router.post('/', async function (req, res, next) {
 		newPost.dateTime = new Date();
 		let db	= await mongoDB.getDb();
 		let postsCollection = db.collection('posts');
+		let usersCollection = db.collection('users');
+		let user = await usersCollection.findOne({ _id: ObjectID(newPost.publisherUserId) });
+		console.log('PUBLISHER USER >>>>'  , user);
+		if (!user) return res.status(400).send({ error: 'Publisher user not found' });
+		newPost.publisherUserName = user.nickname;
 		let insertionResult = await postsCollection.insertOne(newPost);
 		let postId = insertionResult.insertedId;
 		let successFileSaved = false;
@@ -57,9 +65,11 @@ router.post('/', async function (req, res, next) {
 		let isValidExtension = validExtensionFiles[extension]? true : false;
 		let fileName = postId + "." + extension;
 		let pathToSave = postsContentPath + '/' + fileName;
-		if(!isValidExtension) return res.status(400).send({error:'Invalid extension file'})
+		if(!isValidExtension) return res.status(400).send({error:'Invalid extension file'});
+		let contentType = validExtensionFiles[extension];
 		successFileSaved = await toolKit.saveFile(sampleFile,pathToSave);
 		newPost.contentFileName = fileName;
+		newPost.contentType = contentType;
 		let updatePostResult = await postsCollection.save(newPost);
 		return res.send(newPost);
 	}catch(err){
@@ -71,7 +81,7 @@ router.post('/', async function (req, res, next) {
 	// console.log('SampleFile>>' , pathToSave);
 });
 
-router.post('/:id', function (req, res, next) {
+router.put('/:id', function (req, res, next) {
 	let postId = req.params.id;
 	res.send('update post with id' + postId );
 });

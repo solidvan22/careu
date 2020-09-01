@@ -52,30 +52,16 @@ class Post{
 	}
 	videoContent(){
 		return `
-			<div class="post-video">
-				<div class="video-thumb">
-					<img src="img/video-youtube1.jpg" alt="photo">
-					<a href="https://youtube.com/watch?v=excVFQ2TWig" class="play-video">
-						<svg class="olymp-play-icon">
-							<use xlink:href="#olymp-play-icon"></use>
-						</svg>
-					</a>
-				</div>
-				<div class="video-content">
-					<a href="#" class="h4 title">Iron Maid - ChillGroves</a>
-					<p>Lorem ipsum dolor sit amet, consectetur ipisicing elit, sed do eiusmod tempor
-						incididunt
-						ut labore et dolore magna aliqua...
-					</p>
-					<a href="#" class="link-site">YOUTUBE.COM</a>
-				</div>
-			</div>
+			<video controls width="100%">
+				<source src="http://35.231.29.183:3000/posts/${this.id}/content" type="video/mp4" />
+				Sorry, your browser doesn't support embedded videos.
+			</video>
 		`
 	}
 	imageContent(){
 		return `
 			<div class="post-thumb">
-				<img src="img/post__thumb1.jpg" alt="photo">
+				<img src=http://35.231.29.183:3000/posts/${this.id}/content alt="photo">
 			</div>
 		`
 	}
@@ -92,7 +78,31 @@ class Feed{
     }
     addPost(post){
         this.uiElement.insertBefore(post.uiElement, this.uiElement.firstChild)
-    }
+	}
+	async loadPosts(){
+		let postsArray = await getPosts();
+		let postsCount = 0;
+		for (let postData of postsArray){
+			postsCount ++;
+			this.addPost(new Post(postData))
+		}
+	}
+}
+
+function getPosts(){
+	return new Promise((resolve,reject) =>{
+		jQuery.ajax({
+			url: "http://35.231.29.183:3000/posts",
+			cache: false,
+			method: 'GET',
+			success: function (data) {
+				resolve(data);
+			},
+			fail: function(error){
+				reject(error)
+			}
+		});
+	} )
 }
 
 function uploadFunction() {
@@ -100,7 +110,7 @@ function uploadFunction() {
 	let formData = new FormData();
 	let textArea = document.getElementById('post-textarea')
 	formData.append("postContent", input.files[0]);
-	formData.append('publisherUser', 'SERCH');
+	formData.append('publisherUserId', session.userId);
 	formData.append('text', textArea.value);
 	formData.append('section', 'self-care');
 	let url = 'http://35.231.29.183:3000/posts'
@@ -128,6 +138,7 @@ function uploadFunction() {
 	cancelButton = document.getElementById('cancel-button');
 
 	feed = new Feed(document.getElementById('newsfeed-items-grid'))
+	feed.loadPosts()
 
 	/** Events */
 	cancelButton.onclick = function () {
