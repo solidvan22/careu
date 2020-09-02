@@ -8,6 +8,14 @@ router.get('/home', function (req, res, next) {
 
 });
 
+/** ------- test -------  */
+router.get('/newsfeed1', function (req, res, next) {
+  let userId = '5f4d35fe510a175b5489df1e'
+  res.render('newsfeed', { title: 'Self Care', userId });
+});
+/** ------- test -------  */
+
+
 router.get('/self-care', function (req, res, next) {
   let userId = '5f4d35fe510a175b5489df1e'
   res.render('feed', { title: 'Self Care',userId });

@@ -1,133 +1,131 @@
 <link rel="stylesheet" type="text/css" href="css/feed.css">
-<div class="container">
-	<div class="row">
 
-		<!-- Main Content -->
+<div class="row">
 
-		<main class="col col-xl-6 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
+	<!-- Main Content -->
 
-			<div class="ui-block">
+	<main class="col col-xl-6 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
 
-				<!-- News Feed Form  -->
+		<div class="ui-block">
 
-				<div class="news-feed-form">
-					<!-- Nav tabs -->
-					<ul class="nav nav-tabs" role="tablist">
-						<li class="nav-item">
-							
-						</li>
+			<!-- News Feed Form  -->
+
+			<div class="news-feed-form">
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="nav-item">
 						
+					</li>
+					
 
-						
-					</ul>
+					
+				</ul>
 
-					<!-- Tab panes -->
-					<div class="tab-content">
-						<div class="tab-pane active" id="home-1" role="tabpanel" aria-expanded="true" style="height: 100px;">
-							<div style="height:100%; display:flex; flex-direction:row">
-								<div style="margin: auto; display:flex">
-									<img src="users/{{{userId}}}/profilepicture" alt="" class="menu-icon" style="border-radius:50%; width:40px; height:40px">
-									<img src="img/createpost1.svg" alt="" style="width:30px">
-									<span id= 'span-create-post' style="font-size: large; margin:auto; margin-left: 5px">Create a post</span>
-								</div>
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div class="tab-pane active" id="home-1" role="tabpanel" aria-expanded="true" style="height: 100px;">
+						<div style="height:100%; display:flex; flex-direction:row">
+							<div style="margin: auto; display:flex">
+								<img src="users/{{{userId}}}/profilepicture" alt="" class="menu-icon" style="border-radius:50%; width:40px; height:40px">
+								<img src="img/createpost1.svg" alt="" style="width:30px">
+								<span id= 'span-create-post' style="font-size: large; margin:auto; margin-left: 5px">Create a post</span>
 							</div>
 						</div>
+					</div>
 
-						<div class="tab-pane" id="profile-1" role="tabpanel" aria-expanded="true">
-							<form>
-								<div class="author-thumb">
-									<img src="img/author-page.jpg" alt="author">
-									
-								</div>
-								<div class="form-group with-icon label-floating is-empty">
-									<label class="control-label">Share what you are thinking here...</label>
-									
-									<textarea class="form-control" placeholder=""></textarea>
-								</div>
+					<div class="tab-pane" id="profile-1" role="tabpanel" aria-expanded="true">
+						<form>
+							<div class="author-thumb">
+								<img src="img/author-page.jpg" alt="author">
 								
-							</form>
-						</div>
+							</div>
+							<div class="form-group with-icon label-floating is-empty">
+								<label class="control-label">Share what you are thinking here...</label>
+								
+								<textarea class="form-control" placeholder=""></textarea>
+							</div>
+							
+						</form>
+					</div>
 
-						<div class="tab-pane" id="blog" role="tabpanel" aria-expanded="true">
-							<form>
-								<div class="author-thumb">
-									<img src="img/author-page.jpg" alt="author">
-								</div>
-								<div class="form-group with-icon label-floating is-empty">
-									<label class="control-label">Share what you are thinking here...</label>
-									<textarea class="form-control" placeholder=""></textarea>
-								</div>
-								<div class="add-options-message">
-									<a href="#" class="options-message" data-toggle="tooltip" data-placement="top"
-										data-original-title="ADD PHOTOS">
-										<svg class="olymp-camera-icon" data-toggle="modal"
-											data-target="#update-header-photo">
-											<use xlink:href="#olymp-camera-icon"></use>
-										</svg>
-									</a>
-									<a href="#" class="options-message" data-toggle="tooltip" data-placement="top"
-										data-original-title="TAG YOUR FRIENDS">
-										<svg class="olymp-computer-icon">
-											<use xlink:href="#olymp-computer-icon"></use>
-										</svg>
-									</a>
+					<div class="tab-pane" id="blog" role="tabpanel" aria-expanded="true">
+						<form>
+							<div class="author-thumb">
+								<img src="img/author-page.jpg" alt="author">
+							</div>
+							<div class="form-group with-icon label-floating is-empty">
+								<label class="control-label">Share what you are thinking here...</label>
+								<textarea class="form-control" placeholder=""></textarea>
+							</div>
+							<div class="add-options-message">
+								<a href="#" class="options-message" data-toggle="tooltip" data-placement="top"
+									data-original-title="ADD PHOTOS">
+									<svg class="olymp-camera-icon" data-toggle="modal"
+										data-target="#update-header-photo">
+										<use xlink:href="#olymp-camera-icon"></use>
+									</svg>
+								</a>
+								<a href="#" class="options-message" data-toggle="tooltip" data-placement="top"
+									data-original-title="TAG YOUR FRIENDS">
+									<svg class="olymp-computer-icon">
+										<use xlink:href="#olymp-computer-icon"></use>
+									</svg>
+								</a>
 
-									<a href="#" class="options-message" data-toggle="tooltip" data-placement="top"
-										data-original-title="ADD LOCATION">
-										<svg class="olymp-small-pin-icon">
-											<use xlink:href="#olymp-small-pin-icon"></use>
-										</svg>
-									</a>
+								<a href="#" class="options-message" data-toggle="tooltip" data-placement="top"
+									data-original-title="ADD LOCATION">
+									<svg class="olymp-small-pin-icon">
+										<use xlink:href="#olymp-small-pin-icon"></use>
+									</svg>
+								</a>
 
-									
-									<button
-										class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview</button>
+								
+								<button
+									class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview</button>
 
-								</div>
+							</div>
 
-							</form>
-						</div>
+						</form>
 					</div>
 				</div>
-
-				<!-- ... end News Feed Form  -->
 			</div>
 
-			<div id="newsfeed-items-grid">
-			</div>
-		</main>
+			<!-- ... end News Feed Form  -->
+		</div>
 
-		<!-- ... end Main Content -->
+		<div id="newsfeed-items-grid">
+		</div>
+	</main>
 
-
-		<!-- Left Sidebar -->
-
-		<aside class="col col-xl-3 order-xl-1 col-lg-6 order-lg-2 col-md-6 col-sm-6 col-12">
-
-		</aside>
-
-		<!-- ... end Left Sidebar -->
+	<!-- ... end Main Content -->
 
 
-		<!-- Right Sidebar -->
+	<!-- Left Sidebar -->
 
-		<aside class="col col-xl-3 order-xl-3 col-lg-6 order-lg-3 col-md-6 col-sm-6 col-12">
+	<aside class="col col-xl-3 order-xl-1 col-lg-6 order-lg-2 col-md-6 col-sm-6 col-12">
 
-			
+	</aside>
+
+	<!-- ... end Left Sidebar -->
+
+
+	<!-- Right Sidebar -->
+
+	<aside class="col col-xl-3 order-xl-3 col-lg-6 order-lg-3 col-md-6 col-sm-6 col-12">
+
 		
-
-			
-
-
 	
 
-		</aside>
+		
 
-		<!-- ... end Right Sidebar -->
 
-	</div>
+
+
+	</aside>
+
+	<!-- ... end Right Sidebar -->
+
 </div>
-
 
 <div id="modalWindow-container" >
 	

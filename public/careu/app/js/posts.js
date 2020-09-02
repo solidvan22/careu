@@ -4,12 +4,12 @@ class Post{
         this.publisherUserId = postData.publisherUserId;
         this.publisherUserName = postData.publisherUserName;
         this.publisherUserProfilePicture = `users/${this.publisherUserId}/profilepicture`;
-		this.text = postData.text;
+		this.text = largeWords(postData.text);
 		this.contentType = postData.contentType;
         this.section = postData.section;
         this.dateTime = moment(postData.dateTime);
         this.dateToShow = this.dateTime.calendar();
-        this.likesCount = postData.likesCount;
+		this.likesCount = postData.likesCount ? postData.likesCount : 0 ;
         this.contentFileName = postData.contentFileName
         this.uiElement = document.createElement('div');
         this.uiElement.className = 'ui-block';
@@ -31,7 +31,7 @@ class Post{
 								<svg class="olymp-heart-icon">
 									<use xlink:href="#olymp-heart-icon"></use>
 								</svg>
-								<span>${this.likesCount}</span>
+								<span id='${this.id}-likesCount'>${this.likesCount}</span>
 							</a>
 							<div class="comments-shared">
 								<a href="#" class="post-add-icon inline-items">	
@@ -42,13 +42,28 @@ class Post{
 						</div>
 						<div class="control-block-button post-control-button">
 
-							<a href="#" class="btn btn-control">
+							<a id='${this.id}-likeButton'  class="btn btn-control">
 								<svg class="olymp-like-post-icon">
 									<use xlink:href="#olymp-like-post-icon"></use>
 								</svg>
 							</a>
 						</div>
-					</article>`
+			</article>
+		`
+		
+	}
+	insertBefore(uiElementContainer){
+		uiElementContainer.insertBefore(this.uiElement, uiElementContainer.firstChild);
+		this.likeButtton = document.getElementById(`${this.id}-likeButton`);
+		this.likesCountElement = document.getElementById(`${this.id}-likesCount`);
+		console.log(`${this.id}-likesCount`, '>>', this.likesCountElement);
+		let thisPost = this;
+		this.likeButtton.onclick = async function(){
+			let likeResult = await apiPostLike(thisPost.id);
+			if (likeResult.likesCount) thisPost.likesCountElement.innerText = likeResult.likesCount;
+			console.log('>>>>>>>> LIKE RESULT >>> ',likeResult);
+		}
+
 	}
 	videoContent(){
 		return `
@@ -70,6 +85,7 @@ class Post{
 		if(this.contentType == 'image') return this.imageContent();
 		else return '';
 	}
+	
 }
 
 class Feed{
@@ -77,10 +93,14 @@ class Feed{
         this.uiElement = uiElement;
     }
     addPost(post){
-        this.uiElement.insertBefore(post.uiElement, this.uiElement.firstChild)
+		post.insertBefore(this.uiElement);
+        //this.uiElement.insertBefore(post.uiElement, this.uiElement.firstChild)
+	}
+	async like(postId) {
+		this.likeButtton = document.getElementById(``)
 	}
 	async loadPosts(){
-		let postsArray = await getPosts();
+		let postsArray = await apiGetPosts();
 		let postsCount = 0;
 		for (let postData of postsArray){
 			postsCount ++;
@@ -89,7 +109,30 @@ class Feed{
 	}
 }
 
-function getPosts(){
+function separateLargeWord(word, maxSize){
+	return word.slice(0, maxSize - 1) + "-" + word.slice(maxSize)
+}
+
+function largeWords(string) {
+	let resultString = ""
+	let wordsArray = string.split(' ');
+	let maxWordLength = 30;
+	let i = 0;
+	for (word of wordsArray) {
+		i++;
+		let isLarge = false;
+		_word = word;
+		if (word.length > maxWordLength) {
+			console.log("separate word >>", i)
+			_word = separateLargeWord(word, maxWordLength)
+			console.log(_word);
+		}
+		resultString = resultString + " " + _word
+	}
+	return resultString;
+}
+
+function apiGetPosts(){
 	return new Promise((resolve,reject) =>{
 		jQuery.ajax({
 			url: "http://35.231.29.183:3000/posts",
@@ -103,6 +146,21 @@ function getPosts(){
 			}
 		});
 	} )
+}
+function apiPostLike(postId) {
+	return new Promise((resolve, reject) => {
+		jQuery.ajax({
+			url: `posts/${postId}/likes`,
+			cache: false,
+			method: 'POST',
+			success: function (data) {
+				resolve(data);
+			},
+			fail: function (error) {
+				reject(error)
+			}
+		});
+	})
 }
 
 function uploadFunction() {

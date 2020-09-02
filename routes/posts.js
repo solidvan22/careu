@@ -7,6 +7,7 @@ var path	= require('path');
 const currentPath = process.cwd();
 const postsContentPath = path.join(currentPath,'..','posts-content')
 const toolKit = require('../app-common-toolkit');
+const { post } = require('.');
 const validExtensionFiles = {
 	'jpg'	: "image",
 	'jpeg'	: "image",
@@ -14,14 +15,25 @@ const validExtensionFiles = {
 	'mp4'	: "video"
 }
 
+/** Get all posts */
 router.get('/', async function (req, res, next) {
 	// get db, collection objecs
 	let db = await mongoDB.getDb();
 	let postsCollection = db.collection('posts');
-	let postsArray = await postsCollection.find({}).sort({dateTime:1}).limit(20).toArray();
+	let postsArray = await postsCollection.find({})
+	.sort({dateTime:1})
+	.limit(20)
+	.toArray();
+	for(let post of postsArray){
+		if(post.likes) {
+			post.likesCount = Object.keys(post.likes).length;
+			delete post.likes;
+		}
+	}
 	res.send(postsArray);
 });
 
+/** Get post content file */
 router.get('/:postId/content',async function (req,res) {
 	
 		// get userId from URL
@@ -45,6 +57,8 @@ router.get('/:postId/content',async function (req,res) {
 		res.sendFile(postPath);
 	
 })
+
+/** Create new post in database and save file content if exists */
 router.post('/', async function (req, res, next) {
 	try{
 		let newPost = req.body;
@@ -81,10 +95,40 @@ router.post('/', async function (req, res, next) {
 	// console.log('SampleFile>>' , pathToSave);
 });
 
-router.put('/:id', function (req, res, next) {
-	let postId = req.params.id;
-	res.send('update post with id' + postId );
-});
+/** Add new like to a post*/
+router.post('/:postId/likes', async function(req,res){
+	//get postId from url
+	let postId = req.params.postId;
+
+	//get userId 
+	let userId = '5f4d35fe510a175b5489df1e'
+
+	// get db, collection objecs
+	let db = await mongoDB.getDb();
+	let postsCollection = db.collection('posts');
+
+	//find post object in database by postId
+	let post = await postsCollection.findOne({ _id: ObjectID(postId) });
+	if (!post) return res.send("post not found")
+
+	//get likes object from post 
+
+	let likesObject = post.likes;
+	if (!likesObject) likesObject = {}
+
+
+	//add new like to likes object
+	likesObject[userId] = 1;
+	post.likes = likesObject;
+
+	//save changes in database
+	postsCollection.save(post);
+	post.likesCount = Object.keys(likesObject).length;
+	res.send(post)
+
+})
+
+
 
 
 // (async ()=> {
