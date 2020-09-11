@@ -1,0 +1,694 @@
+<!-- Top Header-Profile -->
+
+<div class="container">
+    <div class="row">
+        <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="ui-block">
+                <div class="top-header">
+                    <div class="top-header-thumb">
+                        <img src="users/{{userId}}/coverPhoto" alt="nature" style="max-height: 300px;
+    object-fit: cover;">
+                    </div>
+                    <div class="profile-section">
+                        <div class="row">
+                            <div class="col col-lg-5 col-md-5 col-sm-12 col-12">
+
+                            </div>
+                            <div class="col col-lg-5 ml-auto col-md-5 col-sm-12 col-12">
+
+                            </div>
+                        </div>
+
+                        <div class="control-block-button">
+
+
+
+
+                            <div class="btn btn-control bg-primary more">
+                                <svg class="olymp-settings-icon">
+                                    <use xlink:href="#olymp-settings-icon"></use>
+                                </svg>
+
+                                <ul class="more-dropdown more-with-triangle triangle-bottom-right">
+                                    <li>
+                                        <a href="#" data-toggle="modal" data-target="#update-header-photo">Update
+                                            Profile Photo</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-toggle="modal" data-target="#update-header-photo">Update Header
+                                            Photo</a>
+                                    </li>
+                                    <li>
+                                        <a href="29-YourAccount-AccountSettings.html">Account Settings</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top-header-author">
+                        <a href="02-ProfilePage.html" class="author-thumb">
+                            <img src="users/{{{userId}}}/profilePicture" alt="author" style= 
+                            "width: 124px;
+                             height: 124px;
+                             object-fit: cover">
+                        </a>
+                        <div class="author-content">
+                            <a href="02-ProfilePage.html" class="h4 author-name">{{{username}}}</a>
+                            {{!-- <div class="country">San Francisco, CA</div> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ... end Top Header-Profile -->
+<div class="container">
+    <div class="row">
+
+        <!-- Main Content -->
+
+        <main class="col col-xl-6 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
+
+            <div class="ui-block">
+
+                <!-- News Feed Form  -->
+
+                <div class="news-feed-form">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+
+                        </li>
+
+
+
+                    </ul>
+
+                    <!-- Tab panes -->
+
+                </div>
+
+                <!-- ... end News Feed Form  -->
+            </div>
+
+            <div id="newsfeed-items-grid">
+                
+            </div>
+        </main>
+
+        <!-- ... end Main Content -->
+
+
+        <!-- Left Sidebar -->
+        <aside class="col col-xl-3 order-xl-1 col-lg-6 order-lg-2 col-md-6 col-sm-6 col-12">
+
+        </aside>
+
+        <!-- ... end Left Sidebar -->
+
+
+        <!-- Right Sidebar -->
+
+        <div class="col col-xl-3 order-xl-3 col-lg-6 order-lg-3 col-md-6 col-sm-6 col-12">
+
+
+
+
+            <div class="ui-block">
+
+
+            </div>
+
+        </div>
+
+        <!-- ... end Right Sidebar -->
+
+    </div>
+</div>
+
+<!-- Window-popup Update Header Photo -->
+
+<div class="modal fade" id="update-header-photo" tabindex="-1" role="dialog" aria-labelledby="update-header-photo"
+    aria-hidden="true">
+    <div class="modal-dialog window-popup update-header-photo" role="document">
+        <div class="modal-content">
+            <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+                <svg class="olymp-close-icon">
+                    <use xlink:href="#olymp-close-icon"></use>
+                </svg>
+            </a>
+
+            <div class="modal-header">
+                <h6 class="title">Update Cover Photo</h6>
+            </div>
+
+            <div class="modal-body">
+                <a href="#" class="upload-photo-item">
+                    <svg class="olymp-computer-icon">
+                        <use xlink:href="#olymp-computer-icon"></use>
+                    </svg>
+
+                    <h6>Upload Photo</h6>
+                    <span>Browse your computer.</span>
+                </a>
+
+                <a href="#" class="upload-photo-item" data-toggle="modal" data-target="#choose-from-my-photo">
+
+                    <svg class="olymp-photos-icon">
+                        <use xlink:href="#olymp-photos-icon"></use>
+                    </svg>
+
+                    <h6>Choose from My Photos</h6>
+                    <span>Choose from your uploaded photos</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ... end Window-popup Update Header Photo -->
+
+<!-- Window-popup Choose from my Photo -->
+
+<div class="modal fade" id="choose-from-my-photo" tabindex="-1" role="dialog" aria-labelledby="choose-from-my-photo"
+    aria-hidden="true">
+    <div class="modal-dialog window-popup choose-from-my-photo" role="document">
+
+        <div class="modal-content">
+            <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+                <svg class="olymp-close-icon">
+                    <use xlink:href="#olymp-close-icon"></use>
+                </svg>
+            </a>
+            <div class="modal-header">
+                <h6 class="title">Choose from My Photos</h6>
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-expanded="true">
+                            <svg class="olymp-photos-icon">
+                                <use xlink:href="#olymp-photos-icon"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-expanded="false">
+                            <svg class="olymp-albums-icon">
+                                <use xlink:href="#olymp-albums-icon"></use>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="modal-body">
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home" role="tabpanel" aria-expanded="true">
+
+                        <div class="choose-photo-item" data-mh="choose-item">
+                            <div class="radio">
+                                <label class="custom-radio">
+                                    <img src="img/choose-photo1.jpg" alt="photo">
+                                    <input type="radio" name="optionsRadios">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="choose-photo-item" data-mh="choose-item">
+                            <div class="radio">
+                                <label class="custom-radio">
+                                    <img src="img/choose-photo2.jpg" alt="photo">
+                                    <input type="radio" name="optionsRadios">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="choose-photo-item" data-mh="choose-item">
+                            <div class="radio">
+                                <label class="custom-radio">
+                                    <img src="img/choose-photo3.jpg" alt="photo">
+                                    <input type="radio" name="optionsRadios">
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="choose-photo-item" data-mh="choose-item">
+                            <div class="radio">
+                                <label class="custom-radio">
+                                    <img src="img/choose-photo4.jpg" alt="photo">
+                                    <input type="radio" name="optionsRadios">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="choose-photo-item" data-mh="choose-item">
+                            <div class="radio">
+                                <label class="custom-radio">
+                                    <img src="img/choose-photo5.jpg" alt="photo">
+                                    <input type="radio" name="optionsRadios">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="choose-photo-item" data-mh="choose-item">
+                            <div class="radio">
+                                <label class="custom-radio">
+                                    <img src="img/choose-photo6.jpg" alt="photo">
+                                    <input type="radio" name="optionsRadios">
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="choose-photo-item" data-mh="choose-item">
+                            <div class="radio">
+                                <label class="custom-radio">
+                                    <img src="img/choose-photo7.jpg" alt="photo">
+                                    <input type="radio" name="optionsRadios">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="choose-photo-item" data-mh="choose-item">
+                            <div class="radio">
+                                <label class="custom-radio">
+                                    <img src="img/choose-photo8.jpg" alt="photo">
+                                    <input type="radio" name="optionsRadios">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="choose-photo-item" data-mh="choose-item">
+                            <div class="radio">
+                                <label class="custom-radio">
+                                    <img src="img/choose-photo9.jpg" alt="photo">
+                                    <input type="radio" name="optionsRadios">
+                                </label>
+                            </div>
+                        </div>
+
+
+                        <a href="#" class="btn btn-secondary btn-lg btn--half-width">Cancel</a>
+                        <a href="#" class="btn btn-primary btn-lg btn--half-width">Confirm Photo</a>
+
+                    </div>
+                    <div class="tab-pane" id="profile" role="tabpanel" aria-expanded="false">
+
+                        <div class="choose-photo-item" data-mh="choose-item">
+                            <figure>
+                                <img src="img/choose-photo10.jpg" alt="photo">
+                                <figcaption>
+                                    <a href="#">South America Vacations</a>
+                                    <span>Last Added: 2 hours ago</span>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <div class="choose-photo-item" data-mh="choose-item">
+                            <figure>
+                                <img src="img/choose-photo11.jpg" alt="photo">
+                                <figcaption>
+                                    <a href="#">Photoshoot Summer 2016</a>
+                                    <span>Last Added: 5 weeks ago</span>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <div class="choose-photo-item" data-mh="choose-item">
+                            <figure>
+                                <img src="img/choose-photo12.jpg" alt="photo">
+                                <figcaption>
+                                    <a href="#">Amazing Street Food</a>
+                                    <span>Last Added: 6 mins ago</span>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="choose-photo-item" data-mh="choose-item">
+                            <figure>
+                                <img src="img/choose-photo13.jpg" alt="photo">
+                                <figcaption>
+                                    <a href="#">Graffity & Street Art</a>
+                                    <span>Last Added: 16 hours ago</span>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <div class="choose-photo-item" data-mh="choose-item">
+                            <figure>
+                                <img src="img/choose-photo14.jpg" alt="photo">
+                                <figcaption>
+                                    <a href="#">Amazing Landscapes</a>
+                                    <span>Last Added: 13 mins ago</span>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <div class="choose-photo-item" data-mh="choose-item">
+                            <figure>
+                                <img src="img/choose-photo15.jpg" alt="photo">
+                                <figcaption>
+                                    <a href="#">The Majestic Canyon</a>
+                                    <span>Last Added: 57 mins ago</span>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+
+                        <a href="#" class="btn btn-secondary btn-lg btn--half-width">Cancel</a>
+                        <a href="#" class="btn btn-primary btn-lg disabled btn--half-width">Confirm Photo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ... end Window-popup Choose from my Photo -->
+
+<!-- Playlist Popup -->
+
+<div class="window-popup playlist-popup" tabindex="-1" role="dialog" aria-labelledby="playlist-popup"
+    aria-hidden="true">
+
+    <a href="" class="icon-close js-close-popup">
+        <svg class="olymp-close-icon">
+            <use xlink:href="#olymp-close-icon"></use>
+        </svg>
+    </a>
+
+    <div class="mCustomScrollbar">
+        <table class="playlist-popup-table">
+
+            <thead>
+
+                <tr>
+
+                    <th class="play">
+                        PLAY
+                    </th>
+
+                    <th class="cover">
+                        COVER
+                    </th>
+
+                    <th class="song-artist">
+                        SONG AND ARTIST
+                    </th>
+
+                    <th class="album">
+                        ALBUM
+                    </th>
+
+                    <th class="released">
+                        RELEASED
+                    </th>
+
+                    <th class="duration">
+                        DURATION
+                    </th>
+
+                    <th class="spotify">
+                        GET IT ON SPOTIFY
+                    </th>
+
+                    <th class="remove">
+                        REMOVE
+                    </th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td class="play">
+                        <a href="#" class="play-icon">
+                            <svg class="olymp-music-play-icon-big">
+                                <use xlink:href="#olymp-music-play-icon-big"></use>
+                            </svg>
+                        </a>
+                    </td>
+                    <td class="cover">
+                        <div class="playlist-thumb">
+                            <img src="img/playlist19.jpg" alt="thumb-composition">
+                        </div>
+                    </td>
+                    <td class="song-artist">
+                        <div class="composition">
+                            <a href="#" class="composition-name">We Can Be Heroes</a>
+                            <a href="#" class="composition-author">Jason Bowie</a>
+                        </div>
+                    </td>
+                    <td class="album">
+                        <a href="#" class="album-composition">Ziggy Firedust</a>
+                    </td>
+                    <td class="released">
+                        <div class="release-year">2014</div>
+                    </td>
+                    <td class="duration">
+                        <div class="composition-time">
+                            <time class="published" datetime="2017-03-24T18:18">6:17</time>
+                        </div>
+                    </td>
+                    <td class="spotify">
+                        <i class="fab fa-spotify composition-icon" aria-hidden="true"></i>
+                    </td>
+                    <td class="remove">
+                        <a href="#" class="remove-icon">
+                            <svg class="olymp-close-icon">
+                                <use xlink:href="#olymp-close-icon"></use>
+                            </svg>
+                        </a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="play">
+                        <a href="#" class="play-icon">
+                            <svg class="olymp-music-play-icon-big">
+                                <use xlink:href="#olymp-music-play-icon-big"></use>
+                            </svg>
+                        </a>
+                    </td>
+                    <td class="cover">
+                        <div class="playlist-thumb">
+                            <img src="img/playlist6.jpg" alt="thumb-composition">
+                        </div>
+                    </td>
+                    <td class="song-artist">
+                        <div class="composition">
+                            <a href="#" class="composition-name">The Past Starts Slow and Ends</a>
+                            <a href="#" class="composition-author">System of a Revenge</a>
+                        </div>
+                    </td>
+                    <td class="album">
+                        <a href="#" class="album-composition">Wonderize</a>
+                    </td>
+                    <td class="released">
+                        <div class="release-year">2014</div>
+                    </td>
+                    <td class="duration">
+                        <div class="composition-time">
+                            <time class="published" datetime="2017-03-24T18:18">6:17</time>
+                        </div>
+                    </td>
+                    <td class="spotify">
+                        <i class="fab fa-spotify composition-icon" aria-hidden="true"></i>
+                    </td>
+                    <td class="remove">
+                        <a href="#" class="remove-icon">
+                            <svg class="olymp-close-icon">
+                                <use xlink:href="#olymp-close-icon"></use>
+                            </svg>
+                        </a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="play">
+                        <a href="#" class="play-icon">
+                            <svg class="olymp-music-play-icon-big">
+                                <use xlink:href="#olymp-music-play-icon-big"></use>
+                            </svg>
+                        </a>
+                    </td>
+                    <td class="cover">
+                        <div class="playlist-thumb">
+                            <img src="img/playlist7.jpg" alt="thumb-composition">
+                        </div>
+                    </td>
+                    <td class="song-artist">
+                        <div class="composition">
+                            <a href="#" class="composition-name">The Pretender</a>
+                            <a href="#" class="composition-author">Kung Fighters</a>
+                        </div>
+                    </td>
+                    <td class="album">
+                        <a href="#" class="album-composition">Warping Lights</a>
+                    </td>
+                    <td class="released">
+                        <div class="release-year">2014</div>
+                    </td>
+                    <td class="duration">
+                        <div class="composition-time">
+                            <time class="published" datetime="2017-03-24T18:18">6:17</time>
+                        </div>
+                    </td>
+                    <td class="spotify">
+                        <i class="fab fa-spotify composition-icon" aria-hidden="true"></i>
+                    </td>
+                    <td class="remove">
+                        <a href="#" class="remove-icon">
+                            <svg class="olymp-close-icon">
+                                <use xlink:href="#olymp-close-icon"></use>
+                            </svg>
+                        </a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="play">
+                        <a href="#" class="play-icon">
+                            <svg class="olymp-music-play-icon-big">
+                                <use xlink:href="#olymp-music-play-icon-big"></use>
+                            </svg>
+                        </a>
+                    </td>
+                    <td class="cover">
+                        <div class="playlist-thumb">
+                            <img src="img/playlist8.jpg" alt="thumb-composition">
+                        </div>
+                    </td>
+                    <td class="song-artist">
+                        <div class="composition">
+                            <a href="#" class="composition-name">Seven Nation Army</a>
+                            <a href="#" class="composition-author">The Black Stripes</a>
+                        </div>
+                    </td>
+                    <td class="album">
+                        <a href="#" class="album-composition ">Icky Strung (LIVE at Cube Garden)</a>
+                    </td>
+                    <td class="released">
+                        <div class="release-year">2014</div>
+                    </td>
+                    <td class="duration">
+                        <div class="composition-time">
+                            <time class="published" datetime="2017-03-24T18:18">6:17</time>
+                        </div>
+                    </td>
+                    <td class="spotify">
+                        <i class="fab fa-spotify composition-icon" aria-hidden="true"></i>
+                    </td>
+                    <td class="remove">
+                        <a href="#" class="remove-icon">
+                            <svg class="olymp-close-icon">
+                                <use xlink:href="#olymp-close-icon"></use>
+                            </svg>
+                        </a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="play">
+                        <a href="#" class="play-icon">
+                            <svg class="olymp-music-play-icon-big">
+                                <use xlink:href="#olymp-music-play-icon-big"></use>
+                            </svg>
+                        </a>
+                    </td>
+                    <td class="cover">
+                        <div class="playlist-thumb">
+                            <img src="img/playlist9.jpg" alt="thumb-composition">
+                        </div>
+                    </td>
+                    <td class="song-artist">
+                        <div class="composition">
+                            <a href="#" class="composition-name">Leap of Faith</a>
+                            <a href="#" class="composition-author">Eden Artifact</a>
+                        </div>
+                    </td>
+                    <td class="album">
+                        <a href="#" class="album-composition">The Assassins’s Soundtrack</a>
+                    </td>
+                    <td class="released">
+                        <div class="release-year">2014</div>
+                    </td>
+                    <td class="duration">
+                        <div class="composition-time">
+                            <time class="published" datetime="2017-03-24T18:18">6:17</time>
+                        </div>
+                    </td>
+                    <td class="spotify">
+                        <i class="fab fa-spotify composition-icon" aria-hidden="true"></i>
+                    </td>
+                    <td class="remove">
+                        <a href="#" class="remove-icon">
+                            <svg class="olymp-close-icon">
+                                <use xlink:href="#olymp-close-icon"></use>
+                            </svg>
+                        </a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="play">
+                        <a href="#" class="play-icon">
+                            <svg class="olymp-music-play-icon-big">
+                                <use xlink:href="#olymp-music-play-icon-big"></use>
+                            </svg>
+                        </a>
+                    </td>
+                    <td class="cover">
+                        <div class="playlist-thumb">
+                            <img src="img/playlist10.jpg" alt="thumb-composition">
+                        </div>
+                    </td>
+                    <td class="song-artist">
+                        <div class="composition">
+                            <a href="#" class="composition-name">Killer Queen</a>
+                            <a href="#" class="composition-author">Archiduke</a>
+                        </div>
+                    </td>
+                    <td class="album">
+                        <a href="#" class="album-composition ">News of the Universe</a>
+                    </td>
+                    <td class="released">
+                        <div class="release-year">2014</div>
+                    </td>
+                    <td class="duration">
+                        <div class="composition-time">
+                            <time class="published" datetime="2017-03-24T18:18">6:17</time>
+                        </div>
+                    </td>
+                    <td class="spotify">
+                        <i class="fab fa-spotify composition-icon" aria-hidden="true"></i>
+                    </td>
+                    <td class="remove">
+                        <a href="#" class="remove-icon">
+                            <svg class="olymp-close-icon">
+                                <use xlink:href="#olymp-close-icon"></use>
+                            </svg>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <audio id="mediaplayer" data-showplaylist="true">
+        <source src="mp3/Twice.mp3" title="Track 1" data-poster="track1.png" type="audio/mpeg">
+        <source src="mp3/Twice.mp3" title="Track 2" data-poster="track2.png" type="audio/mpeg">
+        <source src="mp3/Twice.mp3" title="Track 3" data-poster="track3.png" type="audio/mpeg">
+        <source src="mp3/Twice.mp3" title="Track 4" data-poster="track4.png" type="audio/mpeg">
+    </audio>
+
+</div>
+<script>
+    window.session = {
+        userId: '{{{userId}}}',
+        title: '{{{title}}}',
+        username : '{{{username}}}'
+    }
+</script>
+
+<script src="js/jQuery/jquery-3.4.1.js"></script>
+<script src="js/moment.min.js"></script>
+<script src="js/posts.js"></script>
+<script src="js/profile.js"></script>
+
+<!-- ... end Playlist Popup -->

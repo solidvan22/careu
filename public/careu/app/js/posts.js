@@ -99,8 +99,9 @@ class Feed{
 	async like(postId) {
 		this.likeButtton = document.getElementById(``)
 	}
-	async loadPosts(){
-		let postsArray = await apiGetPosts();
+	async loadPosts(filter){
+		let postsArray = await apiGetPosts(filter);
+		console.log('POST ARRAY', postsArray)
 		let postsCount = 0;
 		for (let postData of postsArray){
 			postsCount ++;
@@ -109,6 +110,19 @@ class Feed{
 	}
 }
 
+function queryString(filter={}) {
+	let result = "?";
+	let keys = Object.keys(filter);
+	if (keys.length == 0) return '';
+	let i = 0;
+	for (key of keys) {
+		i++
+		let value = filter[key]
+		if (i > 1) result = result + "&"
+		result = result + `${key}=${value}`
+	}
+	return result;
+}
 function separateLargeWord(word, maxSize){
 	return word.slice(0, maxSize - 1) + "-" + word.slice(maxSize)
 }
@@ -132,13 +146,16 @@ function largeWords(string) {
 	return resultString;
 }
 
-function apiGetPosts(){
+function apiGetPosts(filter){
 	return new Promise((resolve,reject) =>{
+		let query = queryString(filter)
+		let url = "http://35.231.29.183:3000/posts" + query
+		console.log('API POST REQUEST >>>' , url)
 		jQuery.ajax({
-			url: "http://35.231.29.183:3000/posts",
-			cache: false,
+			url: url,
 			method: 'GET',
 			success: function (data) {
+				console.log('POSTS DATA' ,data)
 				resolve(data);
 			},
 			fail: function(error){
@@ -186,36 +203,6 @@ function uploadFunction() {
 	});
 
 }
-
-(function main() {
-	/** Elements */
-	uploadButton = document.getElementById('post-button');
-	openPostWindowButton = document.getElementById('open-post-window');
-	spanCreatePost = document.getElementById('span-create-post');
-	modalWindowContainer = document.getElementById('modalWindow-container');
-	cancelButton = document.getElementById('cancel-button');
-
-	feed = new Feed(document.getElementById('newsfeed-items-grid'))
-	feed.loadPosts()
-
-	/** Events */
-	cancelButton.onclick = function () {
-		modalWindowContainer.style.display = "none";
-	}
-
-	openPostWindowButton.onclick = function () {
-		modalWindowContainer.style.display = "flex";
-	}
-
-	spanCreatePost.onclick = function () {
-		modalWindowContainer.style.display = "flex";
-	}
-
-	uploadButton.onclick = function () {
-		uploadFunction();
-	}
-
-})();
 
 
 

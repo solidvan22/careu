@@ -18,13 +18,17 @@ const validExtensionFiles = {
 /** Get all posts */
 router.get('/', async function (req, res, next) {
 	// get db, collection objecs
+	let filter = req.query;
 	let db = await mongoDB.getDb();
 	let postsCollection = db.collection('posts');
-	let postsArray = await postsCollection.find({})
+	let usersCollection = db.collection('users')
+	let postsArray = await postsCollection.find(filter)
 	.sort({dateTime:1})
 	.limit(20)
 	.toArray();
 	for(let post of postsArray){
+		let user = await usersCollection.findOne({_id:ObjectID(post.publisherUserId)})
+		if (user) post.publisherUserName = user.username;
 		if(post.likes) {
 			post.likesCount = Object.keys(post.likes).length;
 			delete post.likes;
@@ -69,7 +73,7 @@ router.post('/', async function (req, res, next) {
 		let user = await usersCollection.findOne({ _id: ObjectID(newPost.publisherUserId) });
 		console.log('PUBLISHER USER >>>>'  , user);
 		if (!user) return res.status(400).send({ error: 'Publisher user not found' });
-		newPost.publisherUserName = user.nickname;
+		newPost.publisherUserName = user.username;
 		let insertionResult = await postsCollection.insertOne(newPost);
 		let postId = insertionResult.insertedId;
 		let successFileSaved = false;
@@ -101,7 +105,7 @@ router.post('/:postId/likes', async function(req,res){
 	let postId = req.params.postId;
 
 	//get userId 
-	let userId = '5f4d35fe510a175b5489df1e'
+	let userId = '5f5aa0505226f66e7e1c6102'
 
 	// get db, collection objecs
 	let db = await mongoDB.getDb();
