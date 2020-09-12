@@ -1,0 +1,19 @@
+.file-modal-btn{
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 40px;
+    width: 100px;
+    border: none;
+    border-radius: 6px;
+    margin-left: auto;
+    margin-right: auto;
+    background:#a4a8bc;
+}
+
+.file-modal-buttons-container{
+    display: flex;
+    flex-direction: row;
+    width: 250px;
+    margin: auto;
+    height: 60px;
+}

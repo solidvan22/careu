@@ -183,11 +183,12 @@ function apiPostLike(postId) {
 function uploadFunction() {
 	let input = document.getElementById('input-file');
 	let formData = new FormData();
+	let category = session.title.toLowerCase()
 	let textArea = document.getElementById('post-textarea')
 	formData.append("postContent", input.files[0]);
 	formData.append('publisherUserId', session.userId);
 	formData.append('text', textArea.value);
-	formData.append('section', 'self-care');
+	formData.append('category', category);
 	let url = 'http://35.231.29.183:3000/posts'
 	jQuery.ajax({
 		url: url,

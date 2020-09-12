@@ -1,5 +1,5 @@
 <!-- Top Header-Profile -->
-
+<link rel="stylesheet" href="css/profile.css">
 <div class="container">
     <div class="row">
         <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -31,12 +31,12 @@
 
                                 <ul class="more-dropdown more-with-triangle triangle-bottom-right">
                                     <li>
-                                        <a href="#" data-toggle="modal" data-target="#update-header-photo">Update
-                                            Profile Photo</a>
+                                        <a id = 'modal-profile-picture-btn' href="#" data-toggle="modal" data-target="#update-header-photo">
+                                            Update Profile Photo
+                                        </a>
                                     </li>
                                     <li>
-                                        <a href="#" data-toggle="modal" data-target="#update-header-photo">Update Header
-                                            Photo</a>
+                                        <a id = 'modal-cover-picture-btn' href="#" data-toggle="modal" data-target="#update-header-photo">Update Cover Photo</a>
                                     </li>
                                     <li>
                                         <a href="29-YourAccount-AccountSettings.html">Account Settings</a>
@@ -141,28 +141,35 @@
             </a>
 
             <div class="modal-header">
-                <h6 class="title">Update Cover Photo</h6>
+                <h6 id ='modal-title' class="title">Update Cover Photo</h6>
             </div>
 
-            <div class="modal-body">
-                <a href="#" class="upload-photo-item">
-                    <svg class="olymp-computer-icon">
-                        <use xlink:href="#olymp-computer-icon"></use>
-                    </svg>
+            <div class="modal-body" style="display:flex; flex-direction: column;">
+                <img id='img-profile-picture-preview' src="img/uploadimage.png" alt="" style="width: 95%; height:200px;margin: auto;  object-fit: contain;">
+               
+                <input type="file" id="input-file" class='inputfile' accept="image/x-png,image/gif,image/jpeg" style="display:none">
+                <div id = 'loading-message' style="
+                    display: none;
+                    width: 200px;
+                    margin: auto;"
+                >
+                    <img src="img/loadingspinner.gif" style=" 
+                    width:50px;
+                    margin: auto;" >
 
-                    <h6>Upload Photo</h6>
-                    <span>Browse your computer.</span>
-                </a>
+                    <span style="
+                        margin: auto;
+                        margin-left: -15px;
+                        color: #888da8;
+                        font-size: larger;
+                    ">Uploading your photo</span>
+                </div>
+                <div class='file-modal-buttons-container'>
+                    <button class="file-modal-btn" id='btn-select-file'>SELECT FILE</button>
+                    <button class="file-modal-btn" id='btn-save-file'>SAVE</button>
+                </div>
+                
 
-                <a href="#" class="upload-photo-item" data-toggle="modal" data-target="#choose-from-my-photo">
-
-                    <svg class="olymp-photos-icon">
-                        <use xlink:href="#olymp-photos-icon"></use>
-                    </svg>
-
-                    <h6>Choose from My Photos</h6>
-                    <span>Choose from your uploaded photos</span>
-                </a>
             </div>
         </div>
     </div>
@@ -689,6 +696,7 @@
 <script src="js/jQuery/jquery-3.4.1.js"></script>
 <script src="js/moment.min.js"></script>
 <script src="js/posts.js"></script>
+<script src="js/files.js"></script>
 <script src="js/profile.js"></script>
 
 <!-- ... end Playlist Popup -->

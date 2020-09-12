@@ -1,4 +1,5 @@
 <link rel="stylesheet" type="text/css" href="css/feed.css">
+<link rel="stylesheet" href="css/profile.css">
 
 <div class="row">
 
@@ -25,9 +26,15 @@
 				<div class="tab-content">
 					<div class="tab-pane active" id="home-1" role="tabpanel" aria-expanded="true" style="height: 100px;">
 						<div style="height:100%; display:flex; flex-direction:row">
-							<div style="margin: auto; display:flex">
-								<img src="users/{{{userId}}}/profilepicture" alt="" class="menu-icon" style="border-radius:50%; width:40px; height:40px">
-								<img src="img/createpost1.svg" alt="" style="width:30px">
+							<img src="users/{{{userId}}}/profilepicture" alt="" class="menu-icon" style="border-radius:50%; width:40px; height:40px; margin-left: 20px; margin-top: 28px;">
+							<div style="margin: auto;
+										display: flex;
+										background: #eee;
+										width: calc(85% - 22px);
+										border-radius: 17px;
+										height: 50px;">
+								
+								<img src="img/createpost1.svg" alt="" style="width:30px; margin-left: 10px;">
 								<span id= 'span-create-post' style="font-size: large; margin:auto; margin-left: 5px">Create a post</span>
 							</div>
 						</div>
@@ -135,10 +142,51 @@
 			Create new post
 		</h2>
 		<textarea name="" id="post-textarea" cols="30" rows="10"></textarea>
-		<input type="file" id="input-file" class='inputfile'>
-		<div style="display: flex; flex-direction:row; height: 100px;">
-			<button class= "modal-action-button"  id="post-button">POST</button>
-			<button class = "modal-action-button" id="cancel-button">CANCEL</button>
+		<button class="file-modal-btn" id='btn-select-file' style="display: flex; width:220px; margin-top: 10px; margin-bottom:10px">
+			<img src="img/uploadmedia.svg" alt="" style="width: 35px; margin-left: 2px; margin-top: auto; margin-bottom: auto;">
+			<span style="margin: auto; color: white;font-size: 20px;">Photo or video</span>
+		</button>
+		
+	{{!-- 	<div id = 'div-preview' style="
+			width: 99%;
+			margin: auto;
+			margin-top: 10px;
+			display:none;
+			background:pink;
+			" 
+			
+			>
+		</div> --}}
+		<img id= 'img-preview' src="img/uploadimage.png" alt="" 
+			style="
+			width: 100%;
+			display: none;
+			max-height: 230px;
+			object-fit: scale-down;"
+		>
+		
+		<input type="file" id="input-file" class='inputfile' style="display: none;">
+		<div id="loading-message" style="
+		                    display: none;
+		                    width: 200px;
+		                    margin: auto;">
+			<img src="img/loadingspinner.gif" style=" 
+		                    width:50px;
+		                    margin: auto;">
+		
+			<span style="
+		                        margin: auto;
+		                        margin-left: -15px;
+		                        color: #888da8;
+		                        font-size: larger;
+		                    ">Uploading your photo</span>
+		</div>
+		<div class= 'file-modal-buttons-container'>
+			
+			<button class= "file-modal-btn"  id="post-button">POST</button>
+			<button class = "file-modal-btn" id="cancel-button">CANCEL</button>
+
+			</div>
 		</div>
 		
 	</div>

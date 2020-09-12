@@ -3,3 +3,32 @@
     margin-left: -6px;
     
 }
+
+.fixed-sidebar .logo {
+    padding: 15px;
+    background-color: #7d6599;
+
+}
+
+.header {
+   
+    background-color: #24ae5f;
+    
+}
+
+@media (max-width: 1080px){
+    .header .page-title {
+        display: flex;
+    }
+
+    .page-title-mobile {
+        display: flex;
+        text-transform: uppercase;
+        float: left;
+        height: 100%;
+        min-width: 100px;
+        
+    }
+}
+
+

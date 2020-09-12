@@ -12,21 +12,27 @@
 }
 
 #createNewPostWindow{
-    height: 500px;
-    width: 450px;
+    width: 92%;
+    max-width: 500px;
     background: white;
     z-index: 900;
     border: 1px solid;
+    min-height: 370px;
     display: flex;
     flex-direction: column;
     margin: auto;
 }
 #post-textarea{
-    resize: none;
+   resize: none;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 0px;
     width: 90%;
     font-size: initial;
+    height: 120px;
+    margin-bottom: 0px;
+}
+#img-preview{
+    display:none
 }
 
 .modal-action-button{
@@ -36,8 +42,10 @@
 }
 
 #postWindow-title{
-    margin: auto;
     margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .create-post-bubble-button {

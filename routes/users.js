@@ -37,6 +37,7 @@ router.post('/:userId/profilepicture', async function(req, res){
 	if (!user) return res.status(400).send({ error: 'User not found' })
 	if (!(req.files && Object.keys(req.files).length > 0)) return res.send('No file provided');
 	let sampleFile = req.files.profilePicture;
+	if (!sampleFile) return res.status(400).send({ error: 'Profile photo not found in request' })
 	let extension = sampleFile.name.split('.').pop();
 	let isValidExtension = validExtensionFiles[extension] ? true : false;
 	let fileName = userId + "." + extension;
@@ -89,6 +90,7 @@ router.post('/:userId/coverphoto', async function (req, res) {
 	if (!user) return res.status(400).send({ error: 'User not found' })
 	if (!(req.files && Object.keys(req.files).length > 0)) return res.send('No file provided');
 	let sampleFile = req.files.coverPhoto;
+	if (!sampleFile) return res.status(400).send({ error: 'Cover photo not found in request' })
 	let extension = sampleFile.name.split('.').pop();
 	let isValidExtension = validExtensionFiles[extension] ? true : false;
 	let fileName = userId + "." + extension;

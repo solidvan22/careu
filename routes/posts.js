@@ -12,7 +12,8 @@ const validExtensionFiles = {
 	'jpg'	: "image",
 	'jpeg'	: "image",
 	'png'	: "image",
-	'mp4'	: "video"
+	'mp4'	: "video",
+	'MOV'	: "video"	
 }
 
 /** Get all posts */
@@ -72,7 +73,10 @@ router.post('/', async function (req, res, next) {
 		let usersCollection = db.collection('users');
 		let user = await usersCollection.findOne({ _id: ObjectID(newPost.publisherUserId) });
 		console.log('PUBLISHER USER >>>>'  , user);
-		if (!user) return res.status(400).send({ error: 'Publisher user not found' });
+		if (!user){
+			console.log('ERROR>> Publisher user not found' )
+			return res.status(400).send({ error: 'Publisher user not found' })
+		} ;
 		newPost.publisherUserName = user.username;
 		let insertionResult = await postsCollection.insertOne(newPost);
 		let postId = insertionResult.insertedId;
@@ -83,7 +87,10 @@ router.post('/', async function (req, res, next) {
 		let isValidExtension = validExtensionFiles[extension]? true : false;
 		let fileName = postId + "." + extension;
 		let pathToSave = postsContentPath + '/' + fileName;
-		if(!isValidExtension) return res.status(400).send({error:'Invalid extension file'});
+		if(!isValidExtension) {
+			console.log('ERROR>> Invalid extension file', extension)
+			return res.status(400).send({error:'Invalid extension file'});
+		}
 		let contentType = validExtensionFiles[extension];
 		successFileSaved = await toolKit.saveFile(sampleFile,pathToSave);
 		newPost.contentFileName = fileName;
