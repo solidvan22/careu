@@ -1,3 +1,18 @@
 .incorrect-email-or-password{
     display:none
 }
+
+
+.landing-page .content-bg-wrap:before {
+    background-color: rgb(103 58 183 / 100%);
+}
+
+.disable-register-btn {
+    color: white !important;
+    background: #d0aaf39c;
+}
+
+.register-btn{
+    background-color: #7c5ac2;
+    color: white;
+}

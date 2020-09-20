@@ -85,3 +85,9 @@
   right: 0;
   top: 0
 }
+
+.notification-element{
+    padding: 25px;
+    display: block;
+    transition: all .3s ease;
+}

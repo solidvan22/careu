@@ -32,10 +32,11 @@ app.use(fileUpload());
 var db = mongoDB.getDb();
 
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var postsRouter = require('./routes/posts');
-var loginRouter = require('./routes/login');
+var indexRouter     = require('./routes/index');
+var usersRouter     = require('./routes/users');
+var postsRouter     = require('./routes/posts');
+var loginRouter     = require('./routes/login');
+var registerRouter  = require('./routes/register');
 var middlewareSession = require('./routes/session');
 
 
@@ -53,6 +54,7 @@ app.use(function (err, req, res, next) {
 //var loginRouter = require('./routes/login')
 
 app.use('/login', loginRouter);
+app.use('/register', registerRouter);
 
 //-----verify access token middleware ---
 app.use( middlewareSession);

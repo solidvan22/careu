@@ -27,14 +27,15 @@
 					<div class="tab-pane active" id="home-1" role="tabpanel" aria-expanded="true" style="height: 100px;">
 						<div style="height:100%; display:flex; flex-direction:row">
 							<img src="users/{{{userId}}}/profilepicture" alt="" class="menu-icon" style="border-radius:50%; width:40px; height:40px; margin-left: 20px; margin-top: 28px;">
-							<div style="margin: auto;
-										display: flex;
-										background: #eee;
-										width: calc(85% - 22px);
-										border-radius: 17px;
-										height: 50px;">
+							<div style="
+							margin: auto;
+							display: flex;
+							background: #eee;
+							width: calc(85% - 40px);
+							border-radius: 15px;
+							height: 40px;">
 								
-								<img src="img/createpost1.svg" alt="" style="width:30px; margin-left: 10px;">
+								<img src="img/createpost1.svg" alt="" style="width:25px; margin-left: 10px;">
 								<span id= 'span-create-post' style="font-size: large; margin:auto; margin-left: 5px">Create a post</span>
 							</div>
 						</div>
@@ -164,6 +165,11 @@
 			max-height: 230px;
 			object-fit: scale-down;"
 		>
+
+		<video id = 'video-preview'controls width="100%" style="display: none; max-height:250px;">
+			<source id ='video-preview-source' src="http://35.231.29.183:3000/posts/${this.id}/content" type="video/mp4" />
+			Sorry, your browser doesn't support embedded videos.
+		</video>
 		
 		<input type="file" id="input-file" class='inputfile' style="display: none;">
 		<div id="loading-message" style="
@@ -198,6 +204,50 @@
 	<img src="img/createpostwhite.svg" alt="" style="width:32px; margin:auto ">
 
 </a>
+
+<div id='post-notification' style="background: white;
+    width: 320px;
+    position: fixed;
+    z-index: 500;
+    border: 1px solid;
+	right:0px;
+	top:10px;
+	display: none;">
+
+	<div id="close-notification-btn" style="background: #8080803b;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 10px;
+    right: 10px;
+    border-radius: 100%;
+	display:flex;
+	">
+		<span style="margin:auto"> X</span>
+
+	</div>
+	<div class="mCustomScrollbar" data-mcs-theme="dark">
+		<ul class="notification-element">
+			<li>
+				<div class="author-thumb">
+					<img src="img/avatar66-sm.jpg" alt="author">
+				</div>
+				<div style="width: 80%;">
+					<div>
+						<a style="font-size: initial;" href="profile" class="h6 notification-friend">Your post is ready
+							to view.</a>
+					</div>
+					<span class="notification-date">
+						<time class="entry-date updated" datetime="2004-07-24T18:18">
+							March 2nd at 8:29pm
+						</time>
+					</span>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+</div>
 
 <script>
 	window.session = {

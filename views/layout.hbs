@@ -306,6 +306,12 @@
 	</div>
 
 	<div class="header-content-wrapper">
+		
+		<div id="loading-post-message"
+			style="height: 100%; background: rgba(227, 239, 232, 0.26); width: 110px; position: absolute; right: 0px; display: none; flex-direction: column;">
+			<img style="margin: auto; width: 53px;" src="img/loadingspinner-trans.gif" alt="">
+			<span style="margin: auto; margin-top: -10px; color:white;">Uploading post... </span>
+		</div>
 		{{!-- <form class="search-bar w-search notification-list friend-requests">
 			<div class="form-group with-button">
 				<input class="form-control js-user-search" placeholder="Search here people or pages..." type="text">
@@ -317,6 +323,7 @@
 
 		{{!-- <a href="#" class="link-find-friend">Find Friends</a> --}}
 	</div>
+	
 
 </header>
 
@@ -330,6 +337,11 @@
 	
 	<div class="page-title-mobile">
 		<div style="margin: auto;color: white;font-size: initial; margin-left: 10px;">{{{title}}}</div>
+	</div>
+
+	<div id='loading-post-message-mobile' style="height: 100%; background: #e3efe842; width: 110px; position: absolute; right: 0px; display:none; flex-direction:column;">
+		<img style = 'margin: auto; width: 53px;' src="img/loadingspinner-trans.gif" alt="">
+		<span style="margin: auto; margin-top: -10px; color:white;">Uploading post... </span>	
 	</div>
 	<!-- Tab panes -->
 	<div class="tab-content tab-content-responsive">
@@ -661,6 +673,8 @@
 	<!-- ... end  Tab panes -->
 
 </header>
+
+
 
 <!-- ... end Responsive Header-BP -->
 <div class="header-spacer"></div>

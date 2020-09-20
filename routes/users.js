@@ -18,17 +18,6 @@ const validExtensionFiles = {
 router.get('/', function (req, res, next) {
 	res.send('respond with a resource');
 });
-
-router.post('/', async function (req, res) {
-	let newUser = req.body;
-	newUser.password = md5(newUser.password);
-	let db = await mongoDB.getDb();
-	let usersCollection = db.collection('users');
-	let insertResult = await usersCollection.insertOne(newUser);
-	console.log('>>>>>>>> USER INSERTED >>> ' , insertResult);
-	res.send(insertResult.result);
-})
-
 router.post('/:userId/profilepicture', async function(req, res){
 	let userId = req.params.userId;
 	let db = await mongoDB.getDb();

@@ -24,7 +24,7 @@ router.get('/', async function (req, res, next) {
 	let postsCollection = db.collection('posts');
 	let usersCollection = db.collection('users')
 	let postsArray = await postsCollection.find(filter)
-	.sort({dateTime:1})
+	.sort({dateTime:-1})
 	.limit(20)
 	.toArray();
 	for(let post of postsArray){

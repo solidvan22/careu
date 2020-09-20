@@ -9,13 +9,13 @@ async function session(req, res, next) {
 
     if (cookies.accessToken) token = cookies.accessToken
     //else if (req.body.token) token = req.body.token
-    if (!token) return res.redirect('/login');;
+    if (!token) {return res.redirect('/login')};
     let payLoad = auth.tokenDecode(token);
-    if (payLoad === false) return res.send('Invalid token');
+    if (payLoad === false) return res.redirect('/login');
     let userId = payLoad.userId;
     
     let user = await usersCollection.findOne({ _id: ObjectID(userId) });
-    if (!user) return res.redirect('/login');
+    if (!user) {return res.redirect('/login')};
     
     req.sessionData = {
         username : user.username,

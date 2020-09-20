@@ -54,17 +54,26 @@ class Post{
 	}
 	insertBefore(uiElementContainer){
 		uiElementContainer.insertBefore(this.uiElement, uiElementContainer.firstChild);
+		this.afterRender();
+	}
+	insertAfter(uiElementContainer){
+		uiElementContainer.appendChild(this.uiElement);
+		this.afterRender();
+	}
+	afterRender(){
 		this.likeButtton = document.getElementById(`${this.id}-likeButton`);
 		this.likesCountElement = document.getElementById(`${this.id}-likesCount`);
 		console.log(`${this.id}-likesCount`, '>>', this.likesCountElement);
 		let thisPost = this;
-		this.likeButtton.onclick = async function(){
+		this.likeButtton.onclick = async function () {
 			let likeResult = await apiPostLike(thisPost.id);
 			if (likeResult.likesCount) thisPost.likesCountElement.innerText = likeResult.likesCount;
-			console.log('>>>>>>>> LIKE RESULT >>> ',likeResult);
+			console.log('>>>>>>>> LIKE RESULT >>> ', likeResult);
 		}
-
 	}
+
+
+
 	videoContent(){
 		return `
 			<video controls width="100%">
@@ -93,7 +102,8 @@ class Feed{
         this.uiElement = uiElement;
     }
     addPost(post){
-		post.insertBefore(this.uiElement);
+		//post.insertBefore(this.uiElement);
+		post.insertAfter(this.uiElement);
         //this.uiElement.insertBefore(post.uiElement, this.uiElement.firstChild)
 	}
 	async like(postId) {
@@ -182,6 +192,8 @@ function apiPostLike(postId) {
 
 function uploadFunction() {
 	let input = document.getElementById('input-file');
+	let loadingMessage = document.getElementById('loading-post-message');
+	loadingMessage.style.display = 'flex'
 	let formData = new FormData();
 	let category = session.title.toLowerCase()
 	let textArea = document.getElementById('post-textarea')
@@ -200,6 +212,7 @@ function uploadFunction() {
 		type: 'POST', // For jQuery < 1.9
 		success: function (data) {
 			alert(data);
+			loadingMessage.style.display = 'none'
 		}
 	});
 
