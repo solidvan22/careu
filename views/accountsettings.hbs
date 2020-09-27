@@ -12,23 +12,18 @@
                 <form>
                     <div class="row">
 
-                        <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="form-group label-floating">
-                                <label class="control-label">Confirm Current Password</label>
-                                <input class="form-control" placeholder="" type="password" value="Olympus-2017">
-                            </div>
-                        </div>
+                     
 
                         <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="form-group label-floating is-empty">
                                 <label class="control-label">Your New Password</label>
-                                <input class="form-control" placeholder="" type="password">
+                                <input id='password' class="form-control" placeholder="" type="password">
                             </div>
                         </div>
                         <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="form-group label-floating is-empty">
                                 <label class="control-label">Confirm New Password</label>
-                                <input class="form-control" placeholder="" type="password">
+                                <input id='password-confirm' class="form-control" placeholder="" type="password">
                             </div>
                         </div>
 
@@ -49,7 +44,7 @@
 
                         <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="max-width: 300px;
     margin: auto;">
-                            <button class="btn btn-primary btn-lg full-width">Change Password Now!</button>
+                            <button disabled="true" id='passwordButton' class="btn btn-primary btn-lg full-width">Change Password Now!</button>
                         </div>
 
                     </div>
@@ -78,13 +73,13 @@
                         <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="form-group label-floating">
                                 <label class="control-label">Your New Username</label>
-                                <input class="form-control" placeholder="" >
+                                <input id="username" class="form-control" placeholder="" >
                             </div>
                         </div>
 
                         <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="max-width: 300px;
     margin: auto;">
-                            <button class="btn btn-primary btn-lg full-width">Change Username</button>
+                            <button id='usernameButton' disabled='true' class="btn btn-primary btn-lg full-width">Change Username</button>
                         </div>
 
                     </div>
@@ -95,3 +90,10 @@
         </div>
     </div>
 </div>
+<script>
+    window.session = {
+        userId: '{{{userId}}}',
+        title: '{{{title}}}'
+    }
+</script>
+<script src="js/accountsettings.js"></script>

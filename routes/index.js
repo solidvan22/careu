@@ -5,7 +5,13 @@ var router = express.Router();
 
 router.get('/home', function (req, res, next) {
   let userId = req.sessionData.userId
-  res.render('home', { title: 'Express', userId });
+  res.render('home', { title: 'Home', userId });
+
+});
+
+router.get('/', function (req, res, next) {
+  let userId = req.sessionData.userId
+  res.render('home', { title: 'Home', userId });
 
 });
 

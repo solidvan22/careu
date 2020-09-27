@@ -78,11 +78,11 @@ function readFile(input){
     let saveProfilePicture = document.getElementById('btn-save-file');
     saveProfilePicture.onclick = () => {
         let fileName = (typeOfPhoto == 'profilepicture') ? 'profilePicture' : 'coverPhoto'
-        let url = `http://35.231.29.183:3000/users/${userId}/${typeOfPhoto}`
+        let url = `users/${userId}/${typeOfPhoto}`
         uploadFunction(url, fileName);
     }
     
-    feed = new Feed(document.getElementById('newsfeed-items-grid'))
+    feed = new Feed(document.getElementById('newsfeed-items-grid'),{publisherUserId: userId })
     feed.loadPosts({publisherUserId: userId})
     
 })();

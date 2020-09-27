@@ -59,7 +59,7 @@ function post(formData) {
 
 (function main() {
 	/** Elements */
-	let category = session.title;
+	let category = session.title.toLowerCase();
 	let uploadButton = document.getElementById('post-button');
 	let inputFile = document.getElementById('input-file')
 	let openPostWindowButton = document.getElementById('open-post-window');
@@ -76,7 +76,7 @@ function post(formData) {
 
 	feed = new Feed(document.getElementById('newsfeed-items-grid'))
 	console.log('CATEGORY>>>>', category);
-	feed.loadPosts({category})
+	feed.loadPosts()
 
 	/** Events */
 	cancelButton.onclick = function () {
@@ -99,7 +99,7 @@ function post(formData) {
 		loadingMessageMobile.style.display = 'flex'
 		loadingMessage.style.display = 'flex'
 		let formData = new FormData();
-		let category = session.title;
+		let category = session.title.toLowerCase()
 		let textArea = document.getElementById('post-textarea')
 		formData.append("postContent", input.files[0]);
 		formData.append('publisherUserId', session.userId);

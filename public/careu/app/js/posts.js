@@ -6,7 +6,7 @@ class Post{
         this.publisherUserProfilePicture = `users/${this.publisherUserId}/profilepicture`;
 		this.text = largeWords(postData.text);
 		this.contentType = postData.contentType;
-        this.section = postData.section;
+        this.category = postData.category;
         this.dateTime = moment(postData.dateTime);
         this.dateToShow = this.dateTime.calendar();
 		this.likesCount = postData.likesCount ? postData.likesCount : 0 ;
@@ -18,7 +18,7 @@ class Post{
 						<div class="post__author author vcard inline-items">
 							<img src="${this.publisherUserProfilePicture}" alt="author">
 							<div class="author-date">
-								<a class="h6 post__author-name fn" href="#">${this.publisherUserName}</a> 
+								<a class="h6 post__author-name fn">${this.publisherUserName}</a> 
 								<div class="post__date">
 									<time class="published"> ${this.dateToShow} </time>
 								</div>
@@ -33,11 +33,9 @@ class Post{
 								</svg>
 								<span id='${this.id}-likesCount'>${this.likesCount}</span>
 							</a>
-							<div class="comments-shared">
-								<a href="#" class="post-add-icon inline-items">	
-								</a>
-								<a href="#" class="post-add-icon inline-items">	
-								</a>
+							<div class="category-info">
+								<img src= "img/menu-icons/${this.category}.svg" alt="" style="width: 20px; margin:auto">
+								<span style = 'margin: auto; margin-left :5px'> ${this.category} </span>
 							</div>
 						</div>
 						<div class="control-block-button post-control-button">
@@ -77,7 +75,7 @@ class Post{
 	videoContent(){
 		return `
 			<video controls width="100%">
-				<source src="http://35.231.29.183:3000/posts/${this.id}/content" type="video/mp4" />
+				<source src="posts/${this.id}/content" type="video/mp4" />
 				Sorry, your browser doesn't support embedded videos.
 			</video>
 		`
@@ -85,7 +83,7 @@ class Post{
 	imageContent(){
 		return `
 			<div class="post-thumb">
-				<img src=http://35.231.29.183:3000/posts/${this.id}/content alt="photo">
+				<img src=posts/${this.id}/content alt="photo">
 			</div>
 		`
 	}
@@ -98,8 +96,20 @@ class Post{
 }
 
 class Feed{
-    constructor(uiElement){
-        this.uiElement = uiElement;
+    constructor(uiElement, filter={}){
+		this.uiElement = uiElement;
+		this.filter= filter;
+		this.postsArray = []
+		let thisFeed = this;
+		window.addEventListener('scroll', function (e) {
+			if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+				let lastPost = thisFeed.postsArray[thisFeed.postsArray.length-1];
+				let dateFrom = lastPost.dateTime
+				console.log('NEED TO LOAD MORE!!! from: ', dateFrom)
+				thisFeed.filter.from=dateFrom
+				thisFeed.loadPosts(thisFeed.filter)
+			}
+		})
     }
     addPost(post){
 		//post.insertBefore(this.uiElement);
@@ -110,10 +120,10 @@ class Feed{
 		this.likeButtton = document.getElementById(``)
 	}
 	async loadPosts(filter){
-		let postsArray = await apiGetPosts(filter);
-		console.log('POST ARRAY', postsArray)
+		this.postsArray = await apiGetPosts(filter);
+		console.log('POST ARRAY', this.postsArray)
 		let postsCount = 0;
-		for (let postData of postsArray){
+		for (let postData of this.postsArray){
 			postsCount ++;
 			this.addPost(new Post(postData))
 		}
@@ -159,7 +169,7 @@ function largeWords(string) {
 function apiGetPosts(filter){
 	return new Promise((resolve,reject) =>{
 		let query = queryString(filter)
-		let url = "http://35.231.29.183:3000/posts" + query
+		let url = "posts" + query
 		console.log('API POST REQUEST >>>' , url)
 		jQuery.ajax({
 			url: url,
@@ -201,7 +211,7 @@ function uploadFunction() {
 	formData.append('publisherUserId', session.userId);
 	formData.append('text', textArea.value);
 	formData.append('category', category);
-	let url = 'http://35.231.29.183:3000/posts'
+	let url = 'posts'
 	jQuery.ajax({
 		url: url,
 		data: formData,

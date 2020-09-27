@@ -20,12 +20,18 @@ const validExtensionFiles = {
 router.get('/', async function (req, res, next) {
 	// get db, collection objecs
 	let filter = req.query;
+	if(filter.from) {
+		let dateFrom = new Date(filter.from);
+		filter.dateTime = {"$lt" : dateFrom}
+		delete filter["from"];
+	}
+	console.log('>>>>>> FILTER >>>>' ,filter);
 	let db = await mongoDB.getDb();
 	let postsCollection = db.collection('posts');
 	let usersCollection = db.collection('users')
 	let postsArray = await postsCollection.find(filter)
 	.sort({dateTime:-1})
-	.limit(20)
+	.limit(10)
 	.toArray();
 	for(let post of postsArray){
 		let user = await usersCollection.findOne({_id:ObjectID(post.publisherUserId)})

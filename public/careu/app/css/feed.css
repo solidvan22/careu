@@ -64,7 +64,7 @@
     cursor: pointer;
     box-shadow: 0 0 10px 0 rgba(63, 66, 87, 0.4);
     border-radius: 100%;
-    background-color: #ff5e3a;
+    background-color:#7d6599;
 }
 .close-button {
   border: none;
@@ -90,4 +90,18 @@
     padding: 25px;
     display: block;
     transition: all .3s ease;
+}
+
+.category-info{
+    /* margin: auto; */
+    margin-top: auto;
+    margin-right: 10px !important;
+    margin-left: auto !important;
+    display: flex;
+    height: 20px
+}
+
+.post-additional-info {
+   flex-direction: row;
+   height: 40px
 }
